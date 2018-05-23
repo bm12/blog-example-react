@@ -5,7 +5,7 @@ import './App.css';
 
 class App extends Component {
   componentDidMount() {
-    console.log(axios.get('https://blog-example-bm12.herokuapp.com/posts').then(response => console.log(response)));
+    console.log(axios.get('./posts').then(response => console.log(response)));
   }
 
   render() {
