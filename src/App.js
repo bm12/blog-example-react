@@ -1,9 +1,15 @@
 import React, { Component } from 'react';
+import axios from 'axios';
 import logo from './logo.svg';
 import './App.css';
 
 class App extends Component {
+  componentDidMount() {
+    console.log(axios.get('https://blog-example-bm12.herokuapp.com:3000/posts'));
+  }
+
   render() {
+    console.log('render');
     return (
       <div className="App">
         <header className="App-header">
