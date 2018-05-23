@@ -1,1 +1,1 @@
-web: npx json-server --watch db.json --static ./build --port 5000
+web: npx json-server --watch db.json --port 5000 --static ./build/index.html
