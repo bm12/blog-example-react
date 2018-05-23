@@ -1,1 +1,1 @@
-web: node server.js
+web: npx json-server --watch db.json --static ./build
