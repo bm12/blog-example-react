@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import routes from '../../helpers/urls'
+import Header from '../Header'
+import Banner from '../Banner';
 import './style.css';
 
 
@@ -8,13 +10,10 @@ class App extends Component {
   state = {
     posts: [],
   }
-  componentDidMount() {
+  async componentDidMount() {
     console.log(process.env.REACT_APP_HOST_NAME);
-    // axios.get('./posts?_page=1&_limit=12').then(res => {
-    axios.get(`${routes.hostname}/posts?_page=1&_limit=12`).then(res => {
-      this.setState({ posts: res.data });
-      console.log(res);
-    });
+    const res = await axios.get(`${routes.hostname}/posts?_page=1&_limit=12`);
+    this.setState({ posts: res.data });
   }
 
   render() {
@@ -22,18 +21,9 @@ class App extends Component {
     console.log('render');
     return (
       <div className="wraper">
-        <header className="header">
-          <div className="container">
-            <div className="header__logo"> blog-example </div>
-          </div>
-        </header>
+        <Header />
         <main className="main-page">
-          <div className="banner">
-            <div className="container">
-              <h1 className="banner__title"> blog-exapmle </h1>
-              <p className="banner__sub-title">Lorem ipsum dolor sit amet consectetur, adipisicing elit.</p>
-            </div>
-          </div>
+          <Banner />
           <div className="blogs-list">
             <div className="container">
               <div className="row no-gutters">

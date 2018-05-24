@@ -12,28 +12,6 @@ body {
   max-width: 100%;
   height: auto; }
 
-.header__logo {
-  padding: 25px 0;
-  font-size: 1.5rem;
-  font-weight: 600;
-  text-transform: uppercase;
-  color: #2a5f82; }
-
-.banner {
-  text-align: center;
-  padding: 90px 0;
-  background-color: #1A3547;
-  color: #f2f2fd;
-  box-shadow: inset 0px 9px 8px -8px #fff, inset 0 -9px 8px -8px #efefef;
-  margin-bottom: 2rem; }
-  .banner__title {
-    font-size: 2.25rem;
-    text-transform: uppercase;
-    font-weight: 600; }
-  .banner__sub-title {
-    margin: 15px 0;
-    font-size: 1.25rem; }
-
 .main-page {
   background: #efefef;
   min-height: calc(100vh - 90px);
