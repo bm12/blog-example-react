@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import routes from '../../helpers/urls'
 import './style.css';
 
 
@@ -8,8 +9,9 @@ class App extends Component {
     posts: [],
   }
   componentDidMount() {
-    // axios.get('http://lvh.me:5000/posts?_page=1&_limit=12').then(res => {
-    axios.get('./posts?_page=1&_limit=12').then(res => {
+    console.log(process.env.REACT_APP_HOST_NAME);
+    // axios.get('./posts?_page=1&_limit=12').then(res => {
+    axios.get(`${routes.hostname}/posts?_page=1&_limit=12`).then(res => {
       this.setState({ posts: res.data });
       console.log(res);
     });
