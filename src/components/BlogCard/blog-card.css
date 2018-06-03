@@ -5,8 +5,7 @@
   transition: background 200ms ease-out;
   cursor: pointer; }
   .blog-card:hover {
-    background: #f8f9fa;
-    box-shadow: inset 0 0 9px 5px #efefef; }
+    background: #f8f9fa; }
     .blog-card:hover .blog-card__img {
       transform: scale(1.07); }
   .blog-card__head {

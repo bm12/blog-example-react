@@ -6,20 +6,29 @@
     padding: 0;
     margin: 0;
     display: flex; }
-  .pagination__item {
+  .pagination__link {
+    display: block;
     padding: 10px 10px;
     background: #fff;
     cursor: pointer;
     min-width: 55px;
+    color: #1a3547;
     border: 1px solid #d0d0d0;
     text-align: center; }
-    .pagination__item:first-letter {
+    .pagination__link:first-letter {
       text-transform: uppercase; }
-    .pagination__item:hover {
+    .pagination__link:hover {
       color: #f2f2fd;
       background: #2a5f82;
-      border-color: #2a5f82; }
-    .pagination__item_active {
+      border-color: #2a5f82;
+      text-decoration: none; }
+    .pagination__link_active {
       border-color: #1a3547;
       background: #1a3547;
       color: #f2f2fd; }
+    .pagination__link_disabled, .pagination__link_disabled:hover {
+      background: #efefef;
+      border-color: #d0d0d0;
+      color: #000;
+      text-decoration: line-through;
+      cursor: not-allowed; }

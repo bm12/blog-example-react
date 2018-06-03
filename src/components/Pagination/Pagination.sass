@@ -8,11 +8,13 @@
         padding:  0
         margin:  0
         display: flex
-    &__item 
+    &__link
+        display: block
         padding: 10px 10px
         background:  #fff
         cursor:  pointer
         min-width:  55px
+        color: $dark-blue
         border: 1px solid #d0d0d0
         text-align:  center
         &:first-letter 
@@ -21,7 +23,14 @@
             color: $light-white
             background: $light-blue
             border-color: $light-blue
+            text-decoration: none
         &_active 
             border-color: $dark-blue
             background: $dark-blue
             color: $light-white
+        &_disabled, &_disabled:hover
+            background: $light-grey
+            border-color: #d0d0d0
+            color: #000
+            text-decoration: line-through
+            cursor: not-allowed
