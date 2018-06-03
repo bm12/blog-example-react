@@ -1,0 +1,27 @@
+@import 'shared-style.sass'
+
+.pagination
+    justify-content:  center
+    margin-top: 15px
+    &__list 
+        list-style:  none
+        padding:  0
+        margin:  0
+        display: flex
+    &__item 
+        padding: 10px 10px
+        background:  #fff
+        cursor:  pointer
+        min-width:  55px
+        border: 1px solid #d0d0d0
+        text-align:  center
+        &:first-letter 
+            text-transform:  uppercase
+        &:hover 
+            color: $light-white
+            background: $light-blue
+            border-color: $light-blue
+        &_active 
+            border-color: $dark-blue
+            background: $dark-blue
+            color: $light-white

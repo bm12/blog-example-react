@@ -1,0 +1,25 @@
+.pagination {
+  justify-content: center;
+  margin-top: 15px; }
+  .pagination__list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex; }
+  .pagination__item {
+    padding: 10px 10px;
+    background: #fff;
+    cursor: pointer;
+    min-width: 55px;
+    border: 1px solid #d0d0d0;
+    text-align: center; }
+    .pagination__item:first-letter {
+      text-transform: uppercase; }
+    .pagination__item:hover {
+      color: #f2f2fd;
+      background: #2a5f82;
+      border-color: #2a5f82; }
+    .pagination__item_active {
+      border-color: #1a3547;
+      background: #1a3547;
+      color: #f2f2fd; }
