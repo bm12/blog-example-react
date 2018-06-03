@@ -15,32 +15,19 @@ class Pagination extends Component {
         return `${routes.hostname}/posts?_page=${page}&_limit=12`;
     }
 
-    onFirstClick = (e) => {
+    onLinkClick = (getPageNumber, e) => {
         e.preventDefault();
-        this.props.loadNewPosts(this.getUrl(1));
+        const { lastPage } = this.state;
+        const page = getPageNumber();
+        const validPage = page < 1 ? 1 : page > lastPage ? lastPage : page;
+        this.props.loadNewPosts(this.getUrl(validPage), validPage);
     };
 
-    onPrevClick = (e) => {
-        e.preventDefault();
-        const prevPage = this.props.currentPage - 1;
-        this.props.loadNewPosts(this.getUrl(prevPage), prevPage);
-    };
-
-    onCurrentClick = (e) => {
-        e.preventDefault();
-        this.props.loadNewPosts(this.getUrl(this.props.currentPage), this.props.currentPage);
-    };
-
-    onNextClick = (e) => {
-        e.preventDefault();
-        const nextPage = this.props.currentPage + 1;
-        this.props.loadNewPosts(this.getUrl(nextPage), nextPage);
-    };
-
-    onLastClick = (e) => {
-        e.preventDefault();
-        this.props.loadNewPosts(this.getUrl(this.state.lastPage), this.state.lastPage);
-    };
+    onFirstClick = this.onLinkClick.bind(this, () => 1);
+    onPrevClick = this.onLinkClick.bind(this, () => this.props.currentPage - 1);
+    onCurrentClick = this.onLinkClick.bind(this, () => this.props.currentPage);
+    onNextClick = this.onLinkClick.bind(this, () => this.props.currentPage + 1);
+    onLastClick = this.onLinkClick.bind(this, () => this.state.lastPage);
 
     render() {
         const curPage = this.props.currentPage;
