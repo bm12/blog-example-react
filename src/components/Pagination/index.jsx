@@ -12,7 +12,7 @@ class Pagination extends Component {
     }
 
     getUrl(page) {
-        return `${routes.hostname}/posts?_page=${page}&_limit=12`;
+        return `${routes.hostname}/posts?_page=${page}&_limit=12&_embed=images`;
     }
 
     onLinkClick = (getPageNumber, e) => {

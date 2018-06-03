@@ -17,7 +17,7 @@ class App extends Component {
 
     componentDidMount() {
         console.log(process.env.REACT_APP_HOST_NAME);
-        this.loadNewPosts(`${routes.hostname}/posts?_page=1&_limit=12`);
+        this.loadNewPosts(`${routes.hostname}/posts?_page=1&_limit=12&_embed=images`);
     }
 
     loadNewPosts = async (url, currentPage = 1) => {
@@ -39,7 +39,7 @@ class App extends Component {
                     <div className="blogs-list">
                         <div className="container">
                             <div className="row no-gutters">
-                                {posts.map((post) => <BlogCard key={post.id} title={post.title} id={post.id} />)}
+                                {posts.map((post) => <BlogCard key={post.id} title={post.title} id={post.id} image={post.images[0]}/>)}
                             </div>
                             <Pagination 
                                 loadNewPosts={this.loadNewPosts}
