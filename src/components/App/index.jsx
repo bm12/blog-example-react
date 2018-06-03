@@ -17,7 +17,7 @@ class App extends Component {
 
     componentDidMount() {
         console.log(process.env.REACT_APP_HOST_NAME);
-        this.loadNewPosts(`${routes.hostname}/posts?_page=1&_limit=12&_embed=images`);
+        this.loadNewPosts(routes.getPageUrl());
     }
 
     loadNewPosts = async (url, currentPage = 1) => {

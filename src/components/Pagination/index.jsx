@@ -11,16 +11,12 @@ class Pagination extends Component {
         return { ...state, lastPage: Math.ceil(props.postsCount / 12)};
     }
 
-    getUrl(page) {
-        return `${routes.hostname}/posts?_page=${page}&_limit=12&_embed=images`;
-    }
-
     onLinkClick = (getPageNumber, e) => {
         e.preventDefault();
         const { lastPage } = this.state;
         const page = getPageNumber();
         const validPage = page < 1 ? 1 : page > lastPage ? lastPage : page;
-        this.props.loadNewPosts(this.getUrl(validPage), validPage);
+        this.props.loadNewPosts(routes.getPageUrl(validPage), validPage);
     };
 
     onFirstClick = this.onLinkClick.bind(this, () => 1);
