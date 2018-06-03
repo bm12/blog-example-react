@@ -3,6 +3,7 @@ import axios from 'axios';
 import routes from '../../helpers/urls'
 import Header from '../Header'
 import Banner from '../Banner';
+import BlogCard from '../BlogCard';
 import './style.css';
 
 
@@ -27,22 +28,7 @@ class App extends Component {
           <div className="blogs-list">
             <div className="container">
               <div className="row no-gutters">
-                {posts.map((post) => {
-                  return (
-                    <div key={post.id} className="col-md-4 blogs-list__item">
-                      <div className="blog-card">
-                        <header className="blog-card__head">
-                          <img className="img-fluid blog-card__img" src={`https://placeimg.com/640/480/arch?${post.id}`} width="640" height="480" alt="" />
-                          <div className="blog-card__category">Architect {post.id}</div>
-                        </header>
-                        <div className="blog-card__content">
-                          <h5 className="blog-card__author">Leanne Graham:</h5>
-                          <p className="blog-card__title">{post.title}</p>
-                        </div>
-                      </div>
-                    </div>
-                  );
-                })}
+                {posts.map((post) => <BlogCard key={post.id} title={post.title} id={post.id} />)}
               </div>
             </div>
           </div>
