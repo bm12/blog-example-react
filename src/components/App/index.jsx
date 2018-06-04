@@ -13,6 +13,7 @@ class App extends Component {
         posts: [],
         currentPage: 1,
         postsCount: 0,
+        users: [],
     }
 
     componentDidMount() {
@@ -21,13 +22,20 @@ class App extends Component {
     }
 
     loadNewPosts = async (url, currentPage = 1) => {
-        const res = await axios.get(url);
+        const postsResp = await axios.get(url);
+        const usersIdString = postsResp.data.map(post => `id=${post.userId}`).join('&');
+        const usersResp = await axios.get(`${routes.hostname}/users?${usersIdString}`)
         this.setState({
-            posts: res.data,
-            postsCount: Number(res.headers['x-total-count']),
+            posts: postsResp.data,
+            postsCount: Number(postsResp.headers['x-total-count']),
             currentPage,
+            users: usersResp.data,
         });
     }
+
+    getUserById = (id) => {
+        return this.state.users.find(user => user.id === id);
+    };
 
     render() {
         const { posts } = this.state;
@@ -39,7 +47,14 @@ class App extends Component {
                     <div className="blogs-list">
                         <div className="container">
                             <div className="row no-gutters">
-                                {posts.map((post) => <BlogCard key={post.id} title={post.title} id={post.id} image={post.images[0]}/>)}
+                                {posts.map((post) =>
+                                    <BlogCard
+                                        key={post.id}
+                                        title={post.title}
+                                        id={post.id}
+                                        userId={post.userId}
+                                        image={post.images[0]}
+                                        getUserById={this.getUserById}/>)}
                             </div>
                             <Pagination 
                                 loadNewPosts={this.loadNewPosts}

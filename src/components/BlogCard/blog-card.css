@@ -12,6 +12,7 @@
     position: relative; }
   .blog-card__category {
     position: absolute;
+    max-width: 62%;
     padding: 12px 8px;
     top: 57%;
     left: -20px;
