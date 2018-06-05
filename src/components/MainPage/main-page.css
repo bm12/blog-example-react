@@ -1,0 +1,11 @@
+.main-page {
+  background: #efefef;
+  min-height: calc(100vh - 90px);
+  padding-bottom: 40px; }
+
+.blogs-list .blogs-list__item {
+  display: flex; }
+  .blogs-list .blogs-list__item:nth-child(3n) .blog-card {
+    border-right: none; }
+  .blogs-list .blogs-list__item:nth-last-child(-n + 3) .blog-card {
+    border-bottom: none; }

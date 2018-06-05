@@ -1,0 +1,42 @@
+@import 'shared-style.sass'
+
+.post
+    &-page
+        padding: 15px 0 0
+    &__title
+        font-size: 2rem
+        &:first-letter
+            text-transform: uppercase
+    &__author
+        padding-left: 25px
+        font-size: 1.225rem
+        margin: 0 0 30px
+        &-name
+            color: $light-blue
+    &__image-wraper
+        display: flex
+        flex-direction: column
+        align-items: center
+    &-image
+        outline: 4px solid $dark-blue
+        &__author
+            margin: 10px 0 15px
+            font-size: 1.15rem
+            &-link
+                color: $light-blue
+                text-decoration: none
+    &__text
+        font-size: 1.5rem
+        margin: 15px 0 25px
+        &:first-letter
+            text-transform: uppercase
+.go-back
+    color: $light-blue
+    &:hover
+        & .go-back__text
+            text-decoration: underline
+    &__arrow
+        font-size: 1.5rem
+    &__text
+        padding-left: 7px
+        font-size: 1.15rem

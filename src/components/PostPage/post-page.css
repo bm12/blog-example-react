@@ -1,0 +1,44 @@
+.post-page {
+  padding: 15px 0 0; }
+
+.post__title {
+  font-size: 2rem; }
+  .post__title:first-letter {
+    text-transform: uppercase; }
+
+.post__author {
+  padding-left: 25px;
+  font-size: 1.225rem;
+  margin: 0 0 30px; }
+  .post__author-name {
+    color: #2a5f82; }
+
+.post__image-wraper {
+  display: flex;
+  flex-direction: column;
+  align-items: center; }
+
+.post-image {
+  outline: 4px solid #1a3547; }
+  .post-image__author {
+    margin: 10px 0 15px;
+    font-size: 1.15rem; }
+    .post-image__author-link {
+      color: #2a5f82;
+      text-decoration: none; }
+
+.post__text {
+  font-size: 1.5rem;
+  margin: 15px 0 25px; }
+  .post__text:first-letter {
+    text-transform: uppercase; }
+
+.go-back {
+  color: #2a5f82; }
+  .go-back:hover .go-back__text {
+    text-decoration: underline; }
+  .go-back__arrow {
+    font-size: 1.5rem; }
+  .go-back__text {
+    padding-left: 7px;
+    font-size: 1.15rem; }

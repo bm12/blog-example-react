@@ -1,0 +1,14 @@
+@import 'shared-style.sass'
+
+.main-page
+    background: $light-grey
+    min-height: calc(100vh - 90px)
+    padding-bottom: 40px
+
+.blogs-list 
+    & &__item
+        display: flex
+        &:nth-child(3n) .blog-card
+            border-right: none
+        &:nth-last-child(-n + 3) .blog-card
+            border-bottom: none
