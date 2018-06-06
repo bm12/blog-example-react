@@ -8,21 +8,31 @@ import PostPage from '../PostPage';
 
 
 class App extends Component {
-    state = { showPost: true }
+    state = { 
+        showPost: false,
+        openedPostData: {
+            post: {},
+            user: {},
+        },
+    };
 
-    openPost = (post) => {
-        this.setState({ showPost: true });
+    openPost = (post, user) => {
+        this.setState({
+            showPost: true,
+            openedPostData: { post, user },
+        });
     };
-    closePost = (post) => {
-        this.setState({ showPost: false });
-    };
+    closePost = () => this.setState({ showPost: false });
 
     render() {
         return (
             <div className="wraper">
                 <Header />
                 {this.state.showPost ? 
-                    <PostPage closePost={this.closePost} />
+                    <PostPage
+                        closePost={this.closePost}
+                        post={this.state.openedPostData.post}
+                        user={this.state.openedPostData.user} />
                     : 
                     <MainPage openPost={this.openPost}/>}
             </div>

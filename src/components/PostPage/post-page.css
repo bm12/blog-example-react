@@ -25,7 +25,8 @@
     font-size: 1.15rem; }
     .post-image__author-link {
       color: #2a5f82;
-      text-decoration: none; }
+      text-decoration: none;
+      padding-left: 5px; }
 
 .post__text {
   font-size: 1.5rem;
@@ -34,7 +35,8 @@
     text-transform: uppercase; }
 
 .go-back {
-  color: #2a5f82; }
+  color: #2a5f82;
+  cursor: pointer; }
   .go-back:hover .go-back__text {
     text-decoration: underline; }
   .go-back__arrow {

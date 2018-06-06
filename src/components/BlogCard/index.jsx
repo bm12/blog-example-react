@@ -2,9 +2,11 @@ import React from 'react';
 import './blog-card.css'
 
 function BlogCard({ post, getUserById, openPost }) {
-    const authorPost = (getUserById(post.userId) || { name: '' }).name;
+    const user = getUserById(post.userId) || { name: '' };
+    const authorPost = user.name;
+    const openPostBind = (e) => openPost(post, user, e);
     return (
-        <div className="col-md-4 blogs-list__item" onClick={openPost}>
+        <div className="col-md-4 blogs-list__item" onClick={openPostBind}>
             <div className="blog-card">
                 <header className="blog-card__head">
                     <img className="img-fluid blog-card__img" src={post.images[0].url} width="640" height="480" alt="" />
