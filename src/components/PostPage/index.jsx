@@ -21,7 +21,7 @@ function PostPage(props){
                         <img src={postImg.url} alt="" className="img-fluid post-image"/>
                         <div className="post-image__author">
                             Image author: 
-                            <a href={postImg.author_url} target="_blank" className="post-image__author-link">
+                            <a href={postImg.authorUrl} target="_blank" className="post-image__author-link">
                                 {postImg.author}
                             </a>
                         </div>
