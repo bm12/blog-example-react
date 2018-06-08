@@ -14,10 +14,9 @@ class MainPage extends Component {
         postsCount: 0,
         users: [],
         showArticle: false,
-    }
+    };
 
     componentDidMount() {
-        console.log(process.env.REACT_APP_HOST_NAME);
         this.loadNewPosts(routes.getPageUrl());
     }
 
@@ -31,7 +30,7 @@ class MainPage extends Component {
             currentPage,
             users: usersResp.data,
         });
-    }
+    };
 
     getUserById = (id) => {
         return this.state.users.find(user => user.id === id);
@@ -49,7 +48,6 @@ class MainPage extends Component {
                                 <BlogCard
                                     key={post.id}
                                     post={post}
-                                    openPost={this.props.openPost}
                                     getUserById={this.getUserById} />)}
                         </div>
                         <Pagination
