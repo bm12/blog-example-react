@@ -8,16 +8,14 @@ import './style.css';
 import PostPage from '../PostPage';
 
 
-class App extends Component {
-    render() {
-        return (
-            <div className="wraper">
-                <Header />
-                <Route exact path='/' component={MainPage} />
-                <Route path='/post-page/:postId' component={PostPage} />
-            </div>
-        );
-    }
+function App() {
+    return (
+        <div className="wraper">
+            <Header />
+            <Route exact path='/' component={MainPage} />
+            <Route path='/post-page/:postId' component={PostPage} />
+        </div>
+    );
 }
 
 export default App;
