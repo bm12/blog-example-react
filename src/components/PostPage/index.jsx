@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import routes from '../../helpers/urls';
+import Preloader from '../Preloader';
 import './post-page.css';
 
 class PostPage extends Component {
@@ -20,7 +21,7 @@ class PostPage extends Component {
 
     render() {
         
-        if (!this.state.loaded) return <h3>Please wait</h3>;
+        if (!this.state.loaded) return <Preloader />;
 
         const { post } = this.state;
         const { user } = post;

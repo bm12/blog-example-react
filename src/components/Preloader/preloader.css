@@ -1,0 +1,21 @@
+.preloader {
+  margin: 40px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center; }
+  .preloader__spinner {
+    width: 55px;
+    height: 55px;
+    margin: 10px 0;
+    border-radius: 50%;
+    border: 3px solid #2a5f82;
+    border-right-color: transparent;
+    animation: spin .8s linear infinite; }
+  .preloader__title {
+    font-size: 2rem; }
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg); }
+  100% {
+    transform: rotate(360deg); } }

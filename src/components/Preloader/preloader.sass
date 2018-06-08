@@ -1,0 +1,23 @@
+@import 'shared-style.sass'
+
+.preloader
+    margin: 40px 0
+    display: flex
+    flex-direction: column
+    align-items: center
+    &__spinner
+        width: 55px
+        height: 55px
+        margin: 10px 0
+        border-radius: 50%
+        border: 3px solid $light-blue
+        border-right-color: transparent
+        animation: spin .8s linear infinite
+    &__title
+        font-size: 2rem
+
+@keyframes spin 
+    0%
+        transform: rotate(0deg)
+    100%
+        transform: rotate(360deg)
