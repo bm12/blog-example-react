@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route, Redirect } from 'react-router-dom';
+import { Route, Redirect, Switch } from 'react-router-dom';
 import Header from '../Header';
 import MainPage from '../MainPage';
 import './style.css';
@@ -10,9 +10,11 @@ function App() {
     return (
         <div className="wraper">
             <Header />
-            <Route exact path='/' render={(props) => <Redirect to='/main-page/1' {...props} />} />
-            <Route path='/main-page/:pageId' component={MainPage} />
-            <Route path='/post-page/:postId' component={PostPage} />
+            <Switch>
+                <Route exact path='/' render={(props) => <Redirect to='/main-page/1' {...props} />} />
+                <Route path='/main-page/:pageId' component={MainPage} />
+                <Route path='/post-page/:postId' component={PostPage} />
+            </Switch>
         </div>
     );
 }
