@@ -1,51 +1,84 @@
 import React, { Component } from 'react';
 import cn from 'classnames';
-import routes from '../../helpers/urls';
+import { Link } from 'react-router-dom';
 import './Pagination.css'
 
 class Pagination extends Component {
 
-    state = { lastPage: 0 };
+    state = {
+        lastPage:  Math.ceil(this.props.postsCount / 12),
+        pagesLink: {
+            first: '',
+            prev: '',
+            current: '',
+            next: '',
+            last: '',
+        },
+    };
 
-    static getDerivedStateFromProps(props, state) {
-        return { ...state, lastPage: Math.ceil(props.postsCount / 12)};
+    componentDidMount() {
+        this.setState({
+            lastPage: Math.ceil(this.props.postsCount / 12)
+        }, this.setNewPagesLink);
     }
 
-    onLinkClick = (getPageNumber, e) => {
-        e.preventDefault();
+    componentDidUpdate(prevProps) {
+        const { currentPage, postsCount } = this.props;
+        if (currentPage !== prevProps.currentPage || postsCount !== prevProps.postsCount) {
+            this.setState({
+                lastPage: Math.ceil(this.props.postsCount / 12)
+            }, this.setNewPagesLink);
+        }
+    }
+
+    setNewPagesLink() {
+        const newPagesLink = {
+            first: this.getFirstLink(),
+            prev: this.getPrevLink(),
+            current: this.getCurrentLink(),
+            next: this.getNextLink(),
+            last: this.getLastLink(),
+        };
+        this.setState({ pagesLink: newPagesLink });
+    }
+
+    getLink(getPageNumber) {
         const { lastPage } = this.state;
         const page = getPageNumber();
         const validPage = page < 1 ? 1 : page > lastPage ? lastPage : page;
-        this.props.loadNewPosts(routes.getPageUrl(validPage), validPage);
-    };
+        return `/main-page/${validPage}`;
+    }
 
-    onFirstClick = this.onLinkClick.bind(this, () => 1);
-    onPrevClick = this.onLinkClick.bind(this, () => this.props.currentPage - 1);
-    onCurrentClick = this.onLinkClick.bind(this, () => this.props.currentPage);
-    onNextClick = this.onLinkClick.bind(this, () => this.props.currentPage + 1);
-    onLastClick = this.onLinkClick.bind(this, () => this.state.lastPage);
+    getFirstLink = this.getLink.bind(this, () => 1);
+    getPrevLink = this.getLink.bind(this, () => this.props.currentPage - 1);
+    getCurrentLink = this.getLink.bind(this, () => this.props.currentPage);
+    getNextLink = this.getLink.bind(this, () => this.props.currentPage + 1);
+    getLastLink = this.getLink.bind(this, () => this.state.lastPage);
+
+
 
     render() {
         const curPage = this.props.currentPage;
         const { lastPage } = this.state;
+        const { pagesLink } = this.state;
         
         return (
             <nav className="row pagination">
                 <ul className="pagination__list">
                     <li className="pagination__item">
-                        <a href="#" onClick={this.onFirstClick} className="pagination__link">first</a>
+                        <Link to={pagesLink.first} className="pagination__link">first</Link>
                     </li>
                     <li className="pagination__item">
-                        <a href="#" onClick={this.onPrevClick} className={cn('pagination__link', { 'pagination__link_disabled': !(curPage - 1) })}>prev</a>
+                        <Link to={pagesLink.prev} className={cn('pagination__link', { 'pagination__link_disabled': !(curPage - 1) })}>prev</Link>
                     </li>
                     <li className="pagination__item">
-                        <a href="#" onClick={this.onCurrentClick} className="pagination__link pagination__link_active">{curPage}</a>
+                        <Link to={pagesLink.current} className="pagination__link pagination__link_active">{curPage}</Link>
                     </li>
                     <li className="pagination__item">
-                        <a href="#" onClick={this.onNextClick} className={cn('pagination__link', { 'pagination__link_disabled': lastPage === curPage })}>next</a>
+                        <Link to={pagesLink.next} className={cn('pagination__link', { 'pagination__link_disabled': lastPage === curPage })}>next</Link>
                     </li>
                     <li className="pagination__item">
-                        <a href="#" onClick={this.onLastClick} className="pagination__link">last</a>
+                        <Link to={pagesLink.last} className="pagination__link">last</Link>
                     </li>
                 </ul>
             </nav>

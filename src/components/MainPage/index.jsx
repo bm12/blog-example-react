@@ -10,24 +10,31 @@ import './main-page.css';
 class MainPage extends Component {
     state = {
         posts: [],
-        currentPage: 1,
         postsCount: 0,
         users: [],
         showArticle: false,
     };
 
     componentDidMount() {
-        this.loadNewPosts(routes.getPageUrl());
+        const { pageId } = this.props.match.params;
+        this.loadNewPosts(routes.getPageUrl(pageId));
     }
 
-    loadNewPosts = async (url, currentPage = 1) => {
+    componentDidUpdate(prevProps) {
+        const { pageId } = this.props.match.params;
+        const prevPageId = prevProps.match.params.pageId;
+        if (pageId !== prevPageId) {
+            this.loadNewPosts(routes.getPageUrl(pageId));
+        }
+    }
+
+    loadNewPosts = async (url) => {
         const postsResp = await axios.get(url);
         const usersIdString = postsResp.data.map(post => `id=${post.userId}`).join('&');
         const usersResp = await axios.get(`${routes.hostname}/users?${usersIdString}`)
         this.setState({
             posts: postsResp.data,
             postsCount: Number(postsResp.headers['x-total-count']),
-            currentPage,
             users: usersResp.data,
         });
     };
@@ -52,7 +59,7 @@ class MainPage extends Component {
                         </div>
                         <Pagination
                             loadNewPosts={this.loadNewPosts}
-                            currentPage={this.state.currentPage}
+                            currentPage={Number(this.props.match.params.pageId)}
                             postsCount={this.state.postsCount} />
                     </div>
                 </div>
