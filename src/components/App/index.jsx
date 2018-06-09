@@ -1,7 +1,5 @@
-import React, { Component } from 'react';
-import axios from 'axios';
+import React from 'react';
 import { Route, Redirect } from 'react-router-dom';
-import routes from '../../helpers/urls';
 import Header from '../Header';
 import MainPage from '../MainPage';
 import './style.css';
