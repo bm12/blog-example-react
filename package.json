@@ -19,7 +19,7 @@
     "start-js": "react-scripts start",
     "start-css-js": "npm-run-all -p watch-css start-js",
     "start-json-server": "node ./server.js",
-    "start":"npm-run-all -p start-json-server start-css-js",
+    "start": "npm-run-all -p start-json-server start-css-js",
     "build-js": "react-scripts build",
     "build": "npm-run-all build-css build-js",
     "test": "react-scripts test --env=jsdom",
