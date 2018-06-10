@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import PropTypes from 'prop-types';
 import routes from '../../helpers/urls';
 import Banner from '../Banner';
 import BlogCard from '../BlogCard';
@@ -12,7 +13,14 @@ class MainPage extends Component {
         posts: [],
         postsCount: 0,
         users: [],
-        showArticle: false,
+    };
+
+    static propTypes = {
+        match: PropTypes.shape({
+            params: PropTypes.shape({
+                pageId: PropTypes.string.isRequired,
+            }),
+        }),
     };
 
     componentDidMount() {
@@ -58,7 +66,6 @@ class MainPage extends Component {
                                     getUserById={this.getUserById} />)}
                         </div>
                         <Pagination
-                            loadNewPosts={this.loadNewPosts}
                             currentPage={Number(this.props.match.params.pageId)}
                             postsCount={this.state.postsCount} />
                     </div>

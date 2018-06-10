@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import cn from 'classnames';
 import { Link } from 'react-router-dom';
 import routes from '../../helpers/urls';
@@ -7,7 +8,7 @@ import './Pagination.css'
 class Pagination extends Component {
 
     state = {
-        lastPage:  Math.ceil(this.props.postsCount / 12),
+        lastPage: Math.ceil(this.props.postsCount / 12),
         pagesLink: {
             first: '',
             prev: '',
@@ -15,6 +16,11 @@ class Pagination extends Component {
             next: '',
             last: '',
         },
+    };
+
+    static propTypes = {
+        currentPage: PropTypes.number.isRequired,
+        postsCount: PropTypes.number.isRequired,
     };
 
     componentDidMount() {

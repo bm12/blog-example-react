@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import routes from '../../helpers/urls';
 import './blog-card.css';
 
@@ -9,7 +10,7 @@ function BlogCard({ post, getUserById }) {
     return (
         <div className="col-md-4 blogs-list__item">
             <Link to={`${routes.postPageLink}/${post.id}`} className="blog-card">
-                <div >
+                <div>
                     <header className="blog-card__head">
                         <img className="img-fluid blog-card__img" src={post.images[0].url} width="640" height="480" alt="" />
                         <div className="blog-card__category" title="Image author">{post.images[0].author}</div>
@@ -23,5 +24,10 @@ function BlogCard({ post, getUserById }) {
         </div>
     );
 }
+
+BlogCard.propTypes = {
+    post: PropTypes.object.isRequired,
+    getUserById: PropTypes.func.isRequired,
+};
 
 export default BlogCard;

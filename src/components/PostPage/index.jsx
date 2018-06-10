@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import PropTypes from 'prop-types';
 import routes from '../../helpers/urls';
 import Preloader from '../Preloader';
 import './post-page.css';
@@ -8,6 +9,14 @@ class PostPage extends Component {
     state = {
         loaded: false,
         post: {},
+    };
+
+    static propTypes = {
+        match: PropTypes.shape({
+            params: PropTypes.shape({
+                postId: PropTypes.string.isRequired,
+            }),
+        }),
     };
 
     async componentDidMount() {
