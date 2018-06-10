@@ -6,7 +6,6 @@ import routes from '../../helpers/urls';
 import './Pagination.css'
 
 class Pagination extends Component {
-
     state = {
         lastPage: Math.ceil(this.props.postsCount / 12),
         pagesLink: {
@@ -24,18 +23,20 @@ class Pagination extends Component {
     };
 
     componentDidMount() {
-        this.setState({
-            lastPage: Math.ceil(this.props.postsCount / 12)
-        }, this.setNewPagesLink);
+        this.setLastPageAndLinks();
     }
 
     componentDidUpdate(prevProps) {
         const { currentPage, postsCount } = this.props;
         if (currentPage !== prevProps.currentPage || postsCount !== prevProps.postsCount) {
-            this.setState({
-                lastPage: Math.ceil(this.props.postsCount / 12)
-            }, this.setNewPagesLink);
+            this.setLastPageAndLinks();
         }
+    }
+
+    setLastPageAndLinks() {
+        this.setState({
+            lastPage: Math.ceil(this.props.postsCount / 12),
+        }, this.setNewPagesLink); //callback for set new links after the lastPage is setted because the links depend on the lastPage
     }
 
     setNewPagesLink() {
@@ -62,12 +63,9 @@ class Pagination extends Component {
     getNextLink = this.getLink.bind(this, () => this.props.currentPage + 1);
     getLastLink = this.getLink.bind(this, () => this.state.lastPage);
 
-
-
     render() {
         const curPage = this.props.currentPage;
-        const { lastPage } = this.state;
-        const { pagesLink } = this.state;
+        const { lastPage, pagesLink } = this.state;
         
         return (
             <nav className="row pagination">
