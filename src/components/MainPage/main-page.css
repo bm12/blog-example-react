@@ -9,3 +9,9 @@
     border-right: none; }
   .blogs-list .blogs-list__item:nth-last-child(-n + 3) .blog-card {
     border-bottom: none; }
+
+@media screen and (max-width: 768px) {
+  .blogs-list .blogs-list__item .blog-card {
+    border-right: none; }
+  .blogs-list .blogs-list__item:not(:last-child) .blog-card {
+    border-bottom: 1px solid #d0d0d0 !important; } }
