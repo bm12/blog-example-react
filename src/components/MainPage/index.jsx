@@ -38,8 +38,7 @@ class MainPage extends Component {
 
     loadNewPosts = async (url) => {
         const postsResp = await axios.get(url);
-        const usersIdString = postsResp.data.map(post => `id=${post.userId}`).join('&');
-        const usersResp = await axios.get(`${routes.hostname}/api/users?${usersIdString}`)
+        const usersResp = await axios.get(routes.getUsersUrlWithId(postsResp.data))
         this.setState({
             posts: postsResp.data,
             postsCount: Number(postsResp.headers['x-total-count']),
