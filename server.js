@@ -1,5 +1,4 @@
 const jsonServer = require('json-server')
-const fs = require('fs')
 const server = jsonServer.create()
 const router = jsonServer.router('db.json')
 const entryDir = './build';
@@ -20,13 +19,7 @@ server.use(middlewares)
 
 server.use((req, res, next) => {
   if (req.method === 'GET' && !(/\/api/.test(req.url))) {
-    fs.readFile(`${entryDir}/index.html`, (err, html) => {
-      if (err) {
-        res.status(500).end()
-        return
-      }
-      res.end(html)
-    });
+    res.sendFile(`${__dirname}/${entryDir}/index.html`)
   } else {
     next()
   }
