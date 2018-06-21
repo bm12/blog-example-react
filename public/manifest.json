@@ -1,6 +1,7 @@
 {
   "short_name": "blog-example",
   "name": "blog-example",
+  "description": "Simple blog-example on React",
   "icons": [
     {
       "src": "favicon.ico",
