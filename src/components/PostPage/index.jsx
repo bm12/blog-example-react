@@ -21,7 +21,7 @@ class PostPage extends Component {
 
     async componentDidMount() {
         const { postId } = this.props.match.params;
-        const resp = await axios(routes.getPostWithImgAndUser(postId));
+        const resp = await axios.get(routes.getPostWithImgAndUser(postId));
         this.setState({
             post: resp.data,
             loaded: true,
