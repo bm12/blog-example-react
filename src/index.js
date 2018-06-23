@@ -10,4 +10,5 @@ import App from './components/App';
 // import registerServiceWorker from './registerServiceWorker';
 
 ReactDOM.render(<App />, document.getElementById('root'));
+// TODO: add registerSW after end development
 // registerServiceWorker();
