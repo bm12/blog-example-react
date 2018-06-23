@@ -5,7 +5,7 @@ import PostPage from './index';
 
 jest.mock('axios');
 
-describe('work right', () => {
+describe('works right', () => {
     let wrapper;
     const routerParams = { params: { postId: '1' } };
     const routerHistory = { goBack: jest.fn() };
