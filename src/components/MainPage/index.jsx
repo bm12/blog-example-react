@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
-import axios from 'axios';
 import PropTypes from 'prop-types';
-import routes from '../../helpers/urls';
 import Banner from '../Banner';
 import BlogCard from '../BlogCard';
 import Pagination from '../Pagination';
@@ -9,12 +7,6 @@ import './main-page.css';
 
 
 class MainPage extends Component {
-    state = {
-        posts: [],
-        postsCount: 0,
-        users: [],
-    };
-
     static propTypes = {
         match: PropTypes.shape({
             params: PropTypes.shape({
@@ -25,34 +17,23 @@ class MainPage extends Component {
 
     componentDidMount() {
         const { pageId } = this.props.match.params;
-        this.loadNewPosts(routes.getPageUrl(pageId));
+        this.props.fetchPosts(pageId);
     }
 
     componentDidUpdate(prevProps) {
         const { pageId } = this.props.match.params;
         const prevPageId = prevProps.match.params.pageId;
         if (pageId !== prevPageId) {
-            this.loadNewPosts(routes.getPageUrl(pageId));
+            this.props.fetchPosts(pageId);
         }
     }
 
-    loadNewPosts = async (url) => {
-        const postsResp = await axios.get(url);
-        const usersIdString = postsResp.data.map(post => `id=${post.userId}`).join('&');
-        const usersResp = await axios.get(routes.getUsersUrl(usersIdString))
-        this.setState({
-            posts: postsResp.data,
-            postsCount: Number(postsResp.headers['x-total-count']),
-            users: usersResp.data,
-        });
-    };
-
     getUserById = (id) => {
-        return this.state.users.find(user => user.id === id);
+        return this.props.users.find(user => user.id === id);
     };
 
     render() {
-        const { posts } = this.state;
+        const { posts } = this.props;
         return (
             <main className="main-page">
                 <Banner />
@@ -67,7 +48,7 @@ class MainPage extends Component {
                         </div>
                         <Pagination
                             currentPage={Number(this.props.match.params.pageId)}
-                            postsCount={this.state.postsCount} />
+                            postsCount={this.props.postsCount} />
                     </div>
                 </div>
             </main>
