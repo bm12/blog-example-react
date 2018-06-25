@@ -11,7 +11,7 @@ function App() {
             <div className="wraper">
                 <Header />
                 <Switch>
-                    <Route exact path='/' render={(props) => <Redirect to='/main-page/1' {...props} />} />
+                    <Redirect exact from='/' to='/main-page/1' />
                     <Route path='/main-page/:pageId' component={MainPageContainer} />
                     <Route path='/post-page/:postId' component={PostPage} />
                 </Switch>
