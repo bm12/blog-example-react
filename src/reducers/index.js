@@ -1,8 +1,7 @@
 import { combineReducers } from 'redux';
 import { handleActions } from 'redux-actions'
 import * as actions from '../actions';
-
-const keyBy = require('lodash/keyBy');
+import keyBy from "lodash/keyBy";
 
 const postsFetchingState = handleActions({
     [actions.fetchPostsRequest]() {
