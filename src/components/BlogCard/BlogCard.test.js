@@ -42,7 +42,5 @@ it('renders without crashing', () => {
         }
     };
 
-    const getUserById = () => user;
-
-    shallow(<BlogCard post={post} getUserById={getUserById} />);
+    shallow(<BlogCard post={post} user={user} />);
 });
