@@ -4,9 +4,8 @@ import PropTypes from 'prop-types';
 import routes from '../../helpers/urls';
 import './blog-card.css';
 
-function BlogCard({ post, getUserById }) {
-    const user = getUserById(post.userId) || { name: '' };
-    const authorPost = user.name;
+function BlogCard({ post, user }) {
+    const authorPost = user.name || '';
     return (
         <div className="col-md-4 blogs-list__item">
             <Link to={`${routes.postPageLink}/${post.id}`} className="blog-card">
@@ -27,7 +26,7 @@ function BlogCard({ post, getUserById }) {
 
 BlogCard.propTypes = {
     post: PropTypes.object.isRequired,
-    getUserById: PropTypes.func.isRequired,
+    user: PropTypes.object.isRequired,
 };
 
 export default BlogCard;

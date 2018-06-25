@@ -1,8 +1,8 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import Banner from '../Banner';
-import BlogCard from '../BlogCard';
 import Pagination from '../Pagination';
+import BlogCardContainer from '../../containers/BlogCard';
 import './main-page.css';
 
 
@@ -28,10 +28,6 @@ class MainPage extends PureComponent {
         }
     }
 
-    getUserById = (id) => {
-        return this.props.users.find(user => user.id === id);
-    };
-
     render() {
         const { posts } = this.props;
         return (
@@ -41,10 +37,7 @@ class MainPage extends PureComponent {
                     <div className="container">
                         <div className="row no-gutters">
                             {posts.map((post) =>
-                                <BlogCard
-                                    key={post.id}
-                                    post={post}
-                                    getUserById={this.getUserById} />)}
+                                <BlogCardContainer key={post.id} id={post.id} />)}
                         </div>
                         <Pagination
                             currentPage={Number(this.props.match.params.pageId)}
