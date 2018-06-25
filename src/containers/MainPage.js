@@ -1,7 +1,7 @@
 import { connect } from "react-redux";
 import Component from "../components/MainPage";
 import { postsSelector, usersSelector } from "../selectors";
-import * as actionCreators from "../actions";
+import { fetchPosts } from "../actions";
 
 const mapStateToProps = (state) => ({
     posts: postsSelector(state),
@@ -9,4 +9,4 @@ const mapStateToProps = (state) => ({
     users: usersSelector(state),
 });
 
-export default connect(mapStateToProps, actionCreators)(Component);
+export default connect(mapStateToProps, { fetchPosts })(Component);
