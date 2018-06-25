@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import Banner from '../Banner';
 import BlogCard from '../BlogCard';
@@ -6,7 +6,7 @@ import Pagination from '../Pagination';
 import './main-page.css';
 
 
-class MainPage extends Component {
+class MainPage extends PureComponent {
     static propTypes = {
         match: PropTypes.shape({
             params: PropTypes.shape({
