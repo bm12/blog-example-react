@@ -1,14 +1,10 @@
 import { createAction } from "redux-actions";
 import axios from "axios";
 import routes from "../helpers/urls";
+import { createAsyncActions } from "../helpers/reduxHelpers";
 
-export const fetchPostsRequest = createAction('POSTS_FETCH_REQUESTED');
-export const fetchPostsSuccess = createAction('POSTS_FETCH_SUCCESS');
-export const fetchPostsFailure = createAction('POSTS_FETCH_FAILURE');
-
-export const fetchUsersRequest = createAction('USERS_FETCH_REQUESTED');
-export const fetchUsersSuccess = createAction('USERS_FETCH_SUCCESS');
-export const fetchUsersFailure = createAction('USERS_FETCH_FAILURE');
+export const [fetchPostsRequest, fetchPostsSuccess, fetchPostsFailure] = createAsyncActions('POSTS_FETCH');
+export const [fetchUsersRequest, fetchUsersSuccess, fetchUsersFailure] = createAsyncActions('USERS_FETCH');
 
 export const fetchPosts = (pageId) => async (dispatch) => {
     dispatch(fetchPostsRequest());
