@@ -1,30 +1,19 @@
 import { combineReducers } from 'redux';
 import { handleActions } from 'redux-actions'
-import * as actions from '../actions';
 import keyBy from "lodash/keyBy";
+import * as actions from '../actions';
+import { asyncActionsStateReducer } from "../helpers/reduxHelpers";
 
-const postsFetchingState = handleActions({
-    [actions.fetchPostsRequest]() {
-        return 'requested';
-    },
-    [actions.fetchPostsFailure]() {
-        return 'failed';
-    },
-    [actions.fetchPostsSuccess]() {
-        return 'successed';
-    },
-}, 'none');
-const usersFetchingState = handleActions({
-    [actions.fetchUsersRequest]() {
-        return 'requested';
-    },
-    [actions.fetchUsersFailure]() {
-        return 'failed';
-    },
-    [actions.fetchUsersSuccess]() {
-        return 'successed';
-    },
-}, 'none');
+const postsFetchingState = asyncActionsStateReducer({
+    actionRequest: actions.fetchPostsRequest,
+    actionSuccess: actions.fetchPostsSuccess,
+    actionFailure: actions.fetchPostsFailure,
+});
+const usersFetchingState = asyncActionsStateReducer({
+    actionRequest: actions.fetchUsersRequest,
+    actionSuccess: actions.fetchUsersSuccess,
+    actionFailure: actions.fetchUsersFailure,
+});
 
 const posts = handleActions({
     [actions.fetchPostsSuccess](state, { payload: { posts } }) {
