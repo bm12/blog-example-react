@@ -1,16 +1,9 @@
 import React, { Component } from 'react';
-import axios from 'axios';
+import Preloader from "../Preloader";
 import PropTypes from 'prop-types';
-import routes from '../../helpers/urls';
-import Preloader from '../Preloader';
 import './post-page.css';
 
 class PostPage extends Component {
-    state = {
-        loaded: false,
-        post: {},
-    };
-
     static propTypes = {
         match: PropTypes.shape({
             params: PropTypes.shape({
@@ -19,25 +12,21 @@ class PostPage extends Component {
         }),
     };
 
-    async componentDidMount() {
-        const { postId } = this.props.match.params;
-        const resp = await axios.get(routes.getPostWithImgAndUser(postId));
-        this.setState({
-            post: resp.data,
-            loaded: true,
-        });
+    componentDidMount() {
+        if (!this.props.loaded) {
+            console.log(11);
+            this.props.fetchPostAndUserById(this.props.match.params.postId);
+        }
     }
 
     render() {
-        
-        if (!this.state.loaded) return <Preloader />;
+        if (!this.props.loaded) return <Preloader />
 
-        const { post } = this.state;
+        const { post } = this.props;
         const { user } = post;
         const postImg = post.images[0];
-        const postText = post.body.replace(/\n/g, '<br />');
-
-
+        const postText = post.body;
+        
         return (
             <main className="post-page">
                 <div className="container">

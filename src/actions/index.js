@@ -6,6 +6,8 @@ import { createAsyncActions } from "../helpers/reduxHelpers";
 export const [fetchPostsRequest, fetchPostsSuccess, fetchPostsFailure] = createAsyncActions('POSTS_FETCH');
 export const [fetchUsersRequest, fetchUsersSuccess, fetchUsersFailure] = createAsyncActions('USERS_FETCH');
 
+export const [fetchPostAndUserRequest, fetchPostAndUserSuccess, fetchPostAndUserFailure] = createAsyncActions('POST_USER_FETCH');
+
 export const fetchPosts = (pageId) => async (dispatch) => {
     dispatch(fetchPostsRequest());
     try {
@@ -28,5 +30,19 @@ export const fetchUsers = (posts) => async (dispatch) => {
     } catch(err) {
         console.error(err);
         dispatch(fetchUsersFailure());
+    }
+};
+
+export const fetchPostAndUserById = (postId) => async (dispatch) => {
+    console.log(postId);
+    dispatch(fetchPostAndUserRequest());
+    try {
+        const url = routes.getPostWithImgAndUser(postId);
+        const res = await axios.get(url);
+        const post = res.data;
+        dispatch(fetchPostAndUserSuccess({ post }));
+    } catch(err) {
+        console.error(err);
+        dispatch(fetchPostAndUserFailure());
     }
 };

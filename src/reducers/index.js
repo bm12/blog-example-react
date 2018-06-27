@@ -30,6 +30,11 @@ const users = handleActions({
         return keyBy(users, 'id');
     },
 }, {});
+const postPage = handleActions({
+    [actions.fetchPostAndUserSuccess](state, { payload: { post } }) {
+        return { [post.id]: post };
+    },
+}, {});
 
 export default combineReducers({
     postsFetchingState,
@@ -37,4 +42,5 @@ export default combineReducers({
     posts,
     postsCount,
     users,
+    postPage,
 });
