@@ -29,12 +29,11 @@ export const fetchUsers = (posts) => async (dispatch) => {
         dispatch(fetchUsersSuccess({ users: res.data }));
     } catch(err) {
         console.error(err);
-        dispatch(fetchUsersFailure());
+        dispatch(fetchUsersFailure(err));
     }
 };
 
 export const fetchPostAndUserById = (postId) => async (dispatch) => {
-    console.log(postId);
     dispatch(fetchPostAndUserRequest());
     try {
         const url = routes.getPostWithImgAndUser(postId);
@@ -43,6 +42,6 @@ export const fetchPostAndUserById = (postId) => async (dispatch) => {
         dispatch(fetchPostAndUserSuccess({ post }));
     } catch(err) {
         console.error(err);
-        dispatch(fetchPostAndUserFailure());
+        dispatch(fetchPostAndUserFailure(err));
     }
 };
