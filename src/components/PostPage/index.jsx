@@ -14,13 +14,12 @@ class PostPage extends Component {
 
     componentDidMount() {
         if (!this.props.loaded) {
-            console.log(11);
             this.props.fetchPostAndUserById(this.props.match.params.postId);
         }
     }
 
     render() {
-        if (!this.props.loaded) return <Preloader />
+        if (!this.props.loaded) return <Preloader />;
 
         const { post } = this.props;
         const { user } = post;
