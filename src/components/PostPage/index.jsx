@@ -42,7 +42,7 @@ class PostPage extends Component {
                             <img src={postImg.url} alt="" className="img-fluid post-image"/>
                             <div className="post-image__author">
                                 Image author: 
-                                <a href={postImg.authorUrl} target="_blank" className="post-image__author-link">
+                                <a href={postImg.authorUrl} target="_blank" className="post-image__author-link" rel='noreferrer noopener'>
                                     {postImg.author}
                                 </a>
                             </div>
