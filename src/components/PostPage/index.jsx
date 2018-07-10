@@ -10,6 +10,20 @@ class PostPage extends Component {
                 postId: PropTypes.string.isRequired,
             }),
         }),
+        loaded: PropTypes.bool.isRequired,
+        post: PropTypes.shape({
+            body: PropTypes.string.isRequired,
+            id: PropTypes.number,
+            images: PropTypes.arrayOf(PropTypes.shape({
+                author: PropTypes.string.isRequired,
+                authorUrl: PropTypes.string.isRequired,
+                url: PropTypes.string.isRequired,
+            })).isRequired,
+            title: PropTypes.string.isRequired,
+            user: PropTypes.shape({
+                name: PropTypes.string.isRequired,
+            }).isRequired,
+        }),
     };
 
     componentDidMount() {

@@ -25,8 +25,17 @@ function BlogCard({ post, user }) {
 }
 
 BlogCard.propTypes = {
-    post: PropTypes.object.isRequired,
-    user: PropTypes.object.isRequired,
+    post: PropTypes.shape({
+        id: PropTypes.oneOfType([PropTypes.number, PropTypes.string]).isRequired,
+        images: PropTypes.arrayOf(PropTypes.shape({
+            author: PropTypes.string.isRequired,
+            url: PropTypes.string.isRequired,
+        })).isRequired,
+        title: PropTypes.string.isRequired,
+    }).isRequired,
+    user: PropTypes.shape({
+        name: PropTypes.string,
+    }).isRequired,
 };
 
 export default BlogCard;

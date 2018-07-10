@@ -12,7 +12,11 @@ class MainPage extends PureComponent {
             params: PropTypes.shape({
                 pageId: PropTypes.string.isRequired,
             }),
-        }),
+        }).isRequired,
+        posts: PropTypes.arrayOf(PropTypes.shape({
+            id: PropTypes.number.isRequired,
+        })),
+        postsCount: PropTypes.number,
     };
 
     componentDidMount() {
