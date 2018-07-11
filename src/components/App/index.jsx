@@ -3,7 +3,6 @@ import { BrowserRouter as Router, Route, Redirect, Switch } from 'react-router-d
 import Header from '../Header';
 import MainPageContainer from '../../containers/MainPage';
 import PostPageContainer from '../../containers/PostPage';
-import PostPage from '../PostPage';
 import './style.css';
 
 function App() {
