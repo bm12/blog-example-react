@@ -5,8 +5,8 @@ import { fetchPostAndUserById } from "../actions";
 const mapStateToProps = (state, { match }) => {
     const { postId } = match.params;
     const post = state.postPage[postId];
-
-    if (!post) return { post: newPost, loaded: false };
+    
+    if (!post) return { loaded: false };
 
     const postText = post.body.replace(/\n/g, '<br />');
     const newPost = { ...post, body: postText };
