@@ -8,7 +8,7 @@ import './style.css';
 function App() {
     return (
         <Router>
-            <div className="wraper">
+            <div className="wrapper">
                 <Header />
                 <Switch>
                     <Redirect exact from='/' to='/main-page/1' />
