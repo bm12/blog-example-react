@@ -19,10 +19,10 @@ class PostPage extends Component {
                 authorUrl: PropTypes.string.isRequired,
                 url: PropTypes.string.isRequired,
             })).isRequired,
-            title: PropTypes.string.isRequired,
-            user: PropTypes.shape({
-                name: PropTypes.string.isRequired,
-            }).isRequired,
+            title: PropTypes.string.isRequired
+        }),
+        user: PropTypes.shape({
+            name: PropTypes.string.isRequired,
         }),
     };
 
@@ -35,8 +35,8 @@ class PostPage extends Component {
     render() {
         if (!this.props.loaded) return <Preloader />;
 
-        const { post } = this.props;
-        const { user } = post;
+        const { post, user } = this.props;
+        // const { user } = post;
         const postImg = post.images[0];
         const postText = post.body;
         

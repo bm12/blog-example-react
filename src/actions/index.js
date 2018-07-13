@@ -36,10 +36,11 @@ export const fetchUsers = (posts) => async (dispatch) => {
 export const fetchPostAndUserById = (postId) => async (dispatch) => {
     dispatch(fetchPostAndUserRequest());
     try {
-        const url = routes.getPostWithImgAndUser(postId);
+        const url = routes.getPostUrl(postId);
         const res = await axios.get(url);
         const post = res.data;
         dispatch(fetchPostAndUserSuccess({ post }));
+        dispatch(fetchUsers([post]));
     } catch(err) {
         console.error(err);
         dispatch(fetchPostAndUserFailure(err));
