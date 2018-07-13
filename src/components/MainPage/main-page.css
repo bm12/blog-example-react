@@ -5,13 +5,13 @@
 
 .blogs-list .blogs-list__item {
   display: flex; }
-  .blogs-list .blogs-list__item:nth-child(3n) .blog-card {
+  .blogs-list .blogs-list__item:nth-child(3n) .blog-card, .blogs-list .blogs-list__item:nth-child(3n) .blog-card-placeholder {
     border-right: none; }
-  .blogs-list .blogs-list__item:nth-last-child(-n + 3) .blog-card {
+  .blogs-list .blogs-list__item:nth-last-child(-n + 3) .blog-card, .blogs-list .blogs-list__item:nth-last-child(-n + 3) .blog-card-placeholder {
     border-bottom: none; }
 
 @media screen and (max-width: 768px) {
-  .blogs-list .blogs-list__item .blog-card {
+  .blogs-list .blogs-list__item .blog-card, .blogs-list .blogs-list__item .blog-card-placeholder {
     border-right: none; }
-  .blogs-list .blogs-list__item:not(:last-child) .blog-card {
+  .blogs-list .blogs-list__item:not(:last-child) {
     border-bottom: 1px solid #d0d0d0 !important; } }

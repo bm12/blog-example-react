@@ -8,15 +8,18 @@
 .blogs-list 
     & &__item
         display: flex
-        &:nth-child(3n) .blog-card
-            border-right: none
-        &:nth-last-child(-n + 3) .blog-card
-            border-bottom: none
+        &:nth-child(3n)
+            & .blog-card, & .blog-card-placeholder
+                border-right: none
+        &:nth-last-child(-n + 3)
+            & .blog-card, & .blog-card-placeholder
+                border-bottom: none
 
 @media screen and (max-width: 768px)
     .blogs-list 
         & &__item
-            & .blog-card
+            & .blog-card, & .blog-card-placeholder
                 border-right: none
-            &:not(:last-child) .blog-card
+            &:not(:last-child)
+                & .blog-card, & .blog-card-placeholder
                 border-bottom: 1px solid #d0d0d0!important
