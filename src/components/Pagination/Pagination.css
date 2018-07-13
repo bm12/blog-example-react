@@ -31,4 +31,5 @@
       border-color: #d0d0d0;
       color: #000;
       text-decoration: line-through;
-      cursor: not-allowed; }
+      cursor: not-allowed;
+      pointer-events: none; }

@@ -19,7 +19,7 @@ class Pagination extends Component {
 
     static propTypes = {
         currentPage: PropTypes.number.isRequired,
-        postsCount: PropTypes.number.isRequired,
+        postsCount: PropTypes.number,
     };
 
     componentDidMount() {
@@ -66,6 +66,7 @@ class Pagination extends Component {
     render() {
         const curPage = this.props.currentPage;
         const { lastPage, pagesLink } = this.state;
+        const { postsCount } = this.props;
         
         return (
             <nav className="row pagination">
@@ -80,10 +81,10 @@ class Pagination extends Component {
                         <Link to={pagesLink.current} className="pagination__link pagination__link_active">{curPage}</Link>
                     </li>
                     <li className="pagination__item">
-                        <Link to={pagesLink.next} className={cn('pagination__link', { 'pagination__link_disabled': lastPage === curPage })}>next</Link>
+                        <Link to={pagesLink.next} className={cn('pagination__link', { 'pagination__link_disabled': (lastPage === curPage || postsCount === undefined) })}>next</Link>
                     </li>
                     <li className="pagination__item">
-                        <Link to={pagesLink.last} className="pagination__link">last</Link>
+                        <Link to={pagesLink.last} className={cn('pagination__link', { 'pagination__link_disabled': postsCount === undefined })}>last</Link>
                     </li>
                 </ul>
             </nav>
