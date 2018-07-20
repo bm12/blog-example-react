@@ -39,7 +39,7 @@ class PostPage extends Component {
         // const { user } = post;
         const postImg = post.images[0];
         const postText = post.body;
-        
+        const commentsText = 'laudantium enim quasi est quidem magnam voluptate ipsam eos\ntempora quo necessitatibus\ndolor quam autem quasi\nreiciendis et nam sapiente accusantium'.replace('\n', '<br>');
         return (
             <main className="post-page">
                 <div className="container">
@@ -62,6 +62,28 @@ class PostPage extends Component {
                             </div>
                         </div>
                         <div className="post__text" dangerouslySetInnerHTML={{ __html: postText }}></div>
+                    </div>
+                    <div className="comments">
+                        <ul className="comments__list">
+                            <li className="comments__item">
+                                <div className="comments__author-info">
+                                    <span className="comments__author-email">Eliseo@gardner.biz</span>
+                                </div>
+                                <div className="comments__text" dangerouslySetInnerHTML={{ __html: commentsText }}></div>
+                            </li>
+                            <li className="comments__item">
+                                <div className="comments__author-info">
+                                    <span className="comments__author-email">Eliseo@gardner.biz</span>
+                                </div>
+                                <div className="comments__text" dangerouslySetInnerHTML={{ __html: commentsText }}></div>
+                            </li>
+                            <li className="comments__item">
+                                <div className="comments__author-info">
+                                    <span className="comments__author-email">Eliseo@gardner.biz</span>
+                                </div>
+                                <div className="comments__text" dangerouslySetInnerHTML={{ __html: commentsText }}></div>
+                            </li>
+                        </ul>
                     </div>
                 </div>
             </main>

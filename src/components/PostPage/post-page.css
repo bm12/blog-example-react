@@ -44,3 +44,18 @@
   .go-back__text {
     padding-left: 7px;
     font-size: 1.15rem; }
+
+.comments__list {
+  padding: 0;
+  list-style: none;
+  margin: 20px 0; }
+
+.comments__item {
+  margin: 10px 0; }
+
+.comments__author-info {
+  font-size: 1.25rem; }
+
+.comments__text {
+  font-size: 1.15rem;
+  padding-left: 15px; }
