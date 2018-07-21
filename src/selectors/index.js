@@ -13,3 +13,13 @@ export const formatedPostSelector = createSelector(
         return { ...post, body: postText };
     },
 );
+
+export const formatedCommentsSelector = createSelector(
+    comments => comments,
+    comments => {
+        const formatedComments = comments.map(comment => {
+            return { ...comment, body: comment.body.replace(/\n/g, '<br />') };
+        });
+        return formatedComments;
+    },
+);

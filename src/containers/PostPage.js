@@ -1,7 +1,7 @@
 import { connect } from "react-redux";
 import Component from "../components/PostPage";
 import { fetchPostAndUserById, fetchCommentsByPostId } from "../actions";
-import { formatedPostSelector } from "../selectors";
+import { formatedPostSelector, formatedCommentsSelector } from "../selectors";
 
 const mapStateToProps = (state, { match }) => {
     const { postId } = match.params;
@@ -15,7 +15,7 @@ const mapStateToProps = (state, { match }) => {
     if (!user) return { loaded: false };
 
     const newPost = formatedPostSelector(post);
-    const newComments = comments.map(comment => ({ ...comment, body: comment.body.replace(/\n/g, '<br />') }));
+    const newComments = formatedCommentsSelector(comments);
 
     return {
         user,
