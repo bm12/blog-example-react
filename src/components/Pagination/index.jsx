@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import cn from 'classnames';
 import { Link } from 'react-router-dom';
-import routes from '../../helpers/urls';
+import links from '../../helpers/links';
 import './Pagination.css'
 
 class Pagination extends Component {
@@ -54,7 +54,7 @@ class Pagination extends Component {
         const { lastPage } = this.state;
         const page = getPageNumber();
         const validPage = page < 1 ? 1 : page > lastPage ? lastPage : page;
-        return `${routes.mainPageLink}/${validPage}`;
+        return `${links.mainPageLink}/${validPage}`;
     }
 
     getFirstLink = this.getLink.bind(this, () => 1);
