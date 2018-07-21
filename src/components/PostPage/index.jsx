@@ -39,10 +39,8 @@ class PostPage extends Component {
         if (!this.props.loaded) return <Preloader />;
 
         const { post, user, comments } = this.props;
-        // const { user } = post;
         const postImg = post.images[0];
         const postText = post.body;
-        const commentsText = 'laudantium enim quasi est quidem magnam voluptate ipsam eos\ntempora quo necessitatibus\ndolor quam autem quasi\nreiciendis et nam sapiente accusantium'.replace('\n', '<br>');
         return (
             <main className="post-page">
                 <div className="container">
