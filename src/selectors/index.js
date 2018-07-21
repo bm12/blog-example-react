@@ -6,8 +6,9 @@ export const postsSelector = createSelector(
     posts => Object.values(posts),
 );
 
+const identity = value => value; // just return value for further processing in the selector
 export const formatedPostSelector = createSelector(
-    post => post,
+    identity,
     post => {
         const postText = post.body.replace(/\n/g, '<br />');
         return { ...post, body: postText };
@@ -15,7 +16,7 @@ export const formatedPostSelector = createSelector(
 );
 
 export const formatedCommentsSelector = createSelector(
-    comments => comments,
+    identity,
     comments => {
         const formatedComments = comments.map(comment => {
             return { ...comment, body: comment.body.replace(/\n/g, '<br />') };
