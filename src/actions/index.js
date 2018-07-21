@@ -5,6 +5,7 @@ import { createAsyncActions } from "../helpers/reduxHelpers";
 
 export const [fetchPostsRequest, fetchPostsSuccess, fetchPostsFailure] = createAsyncActions('POSTS_FETCH');
 export const [fetchUsersRequest, fetchUsersSuccess, fetchUsersFailure] = createAsyncActions('USERS_FETCH');
+export const [fetchCommentsRequest, fetchCommentsSuccess, fetchCommentsFailure] = createAsyncActions('COMMENTS_FETCH');
 
 export const [fetchPostAndUserRequest, fetchPostAndUserSuccess, fetchPostAndUserFailure] = createAsyncActions('POST_USER_FETCH');
 
@@ -44,5 +45,18 @@ export const fetchPostAndUserById = (postId) => async (dispatch) => {
     } catch(err) {
         console.error(err);
         dispatch(fetchPostAndUserFailure(err));
+    }
+};
+
+export const fetchCommentsByPostId = (postId) => async (dispatch) => {
+    dispatch(fetchCommentsRequest());
+    try {
+        const url = routes.getCommentsUrl(postId);
+        const res = await axios.get(url);
+        const comments = res.data;
+        dispatch(fetchCommentsSuccess({ comments, postId }));
+    } catch(err) {
+        console.error(err);
+        dispatch(fetchCommentsFailure(err));
     }
 };

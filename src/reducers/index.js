@@ -33,6 +33,12 @@ const users = handleActions({
         return keyBy(users, 'id');
     },
 }, {});
+const comments = handleActions({
+    [actions.fetchCommentsSuccess](state, { payload: { comments, postId } }) {
+        return { [postId]: comments };
+    },
+}, {});
+
 
 export default combineReducers({
     postsFetchingState,
@@ -40,4 +46,5 @@ export default combineReducers({
     posts,
     postsCount,
     users,
+    comments,
 });

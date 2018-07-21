@@ -28,14 +28,17 @@ class PostPage extends Component {
 
     componentDidMount() {
         if (!this.props.loaded) {
-            this.props.fetchPostAndUserById(this.props.match.params.postId);
+            const { postId } = this.props.match.params;
+
+            this.props.fetchPostAndUserById(postId);
+            this.props.fetchCommentsByPostId(postId);
         }
     }
 
     render() {
         if (!this.props.loaded) return <Preloader />;
 
-        const { post, user } = this.props;
+        const { post, user, comments } = this.props;
         // const { user } = post;
         const postImg = post.images[0];
         const postText = post.body;
@@ -64,25 +67,16 @@ class PostPage extends Component {
                         <div className="post__text" dangerouslySetInnerHTML={{ __html: postText }}></div>
                     </div>
                     <div className="comments">
+                        <h3 className="comments__title">{comments.length} Comments:</h3>
                         <ul className="comments__list">
-                            <li className="comments__item">
-                                <div className="comments__author-info">
-                                    <span className="comments__author-email">Eliseo@gardner.biz</span>
-                                </div>
-                                <div className="comments__text" dangerouslySetInnerHTML={{ __html: commentsText }}></div>
-                            </li>
-                            <li className="comments__item">
-                                <div className="comments__author-info">
-                                    <span className="comments__author-email">Eliseo@gardner.biz</span>
-                                </div>
-                                <div className="comments__text" dangerouslySetInnerHTML={{ __html: commentsText }}></div>
-                            </li>
-                            <li className="comments__item">
-                                <div className="comments__author-info">
-                                    <span className="comments__author-email">Eliseo@gardner.biz</span>
-                                </div>
-                                <div className="comments__text" dangerouslySetInnerHTML={{ __html: commentsText }}></div>
-                            </li>
+                            {comments.map(comment => (
+                                <li key={comment.id} className="comments__item">
+                                    <div className="comments__author-info">
+                                        <span className="comments__author-email">{comment.email}</span>
+                                    </div>
+                                    <div className="comments__text" dangerouslySetInnerHTML={{ __html: comment.body }}></div>
+                                </li>
+                            ))}
                         </ul>
                     </div>
                 </div>
