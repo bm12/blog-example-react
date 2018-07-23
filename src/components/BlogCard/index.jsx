@@ -11,7 +11,7 @@ function BlogCard({ post, user }) {
             <Link to={`${links.postPageLink}/${post.id}`} className="blog-card">
                 <div>
                     <header className="blog-card__head">
-                        <img className="img-fluid blog-card__img" src={post.images[0].url} width="640" height="480" alt="" />
+                        <img className="img-fluid blog-card__img" src={post.images[0].previewUrl} width="640" height="480" alt="" />
                         <div className="blog-card__category" title="Image author">{post.images[0].author}</div>
                     </header>
                     <div className="blog-card__content">
