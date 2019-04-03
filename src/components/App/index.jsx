@@ -21,7 +21,7 @@ class App extends PureComponent {
                 <div className="wrapper">
                     {networkState === 'offline' && (
                         <div className="offline-warning">
-                            Sorry, but you offline now
+                            Sorry, but you offline now :(
                         </div>
                     )}
                     <Header />
