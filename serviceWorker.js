@@ -1,6 +1,6 @@
-const CACHE_NAME = 'v3.1.25';
+const CACHE_NAME = 'v3.1.28';
 
-self.addEventListener('install', (event) => {
+self.addEventListener('install', function onInstall(event) {
   event.waitUntil(
     caches.open(CACHE_NAME).then(cache => cache.addAll([
       '/static/media/Lato-Bold.44dfe8cc.ttf',
@@ -12,7 +12,7 @@ self.addEventListener('install', (event) => {
   // event.waitUntil(self.skipWaiting());
 });
 
-self.addEventListener('activate', (event) => {
+self.addEventListener('activate', function onActivate(event) {
   event.waitUntil(
     caches.keys().then(cacheNames => Promise.all(
       cacheNames.map((cacheName) => {
@@ -25,7 +25,15 @@ self.addEventListener('activate', (event) => {
   );
 });
 
-self.addEventListener('fetch', (event) => {
+async function fetchUpdateResource(request) {
+  const response = await fetch(request);
+
+  const cache = caches.open(CACHE_NAME);
+
+  cache.put(request, response);
+}
+
+self.addEventListener('fetch', function onFetch(event) {
   const { request } = event;
 
   if (request.method !== 'GET' || request.url.indexOf('chrome-extension://') !== -1) return;
@@ -36,7 +44,10 @@ self.addEventListener('fetch', (event) => {
         if (response) console.log('Response from cache: ', event.request);
         else console.log('not cached: ', event.request);
 
-        if (response) return response;
+        if (response) {
+          fetchUpdateResource(event.request.clone());
+          return response;
+        }
 
         return fetch(event.request)
           .then((fetchResponse) => {

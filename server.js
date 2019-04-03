@@ -9,8 +9,8 @@ const PORT = process.env.PORT || 5000;
 server.use(middlewares);
 
 
-server.get('/service-worker.js', (req, res) => {  
-  res.sendFile(`${__dirname}/service-worker.js`);
+server.get('/serviceWorker.js', (req, res) => {  
+  res.sendFile(`${__dirname}/serviceWorker.js`);
 });
 
 server.use((req, res, next) => {

@@ -1,7 +1,7 @@
 function registerServiceWorker() {
   if ('serviceWorker' in navigator) {
     const { serviceWorker } = navigator;
-    serviceWorker.register('/service-worker.js', { scope: '/' }).then((reg) => {
+    serviceWorker.register('/serviceWorker.js', { scope: '/' }).then((reg) => {
 
       if (reg.active) {
         console.log('Service worker active');
