@@ -1,4 +1,4 @@
-const CACHE_NAME = 'v3.1.29';
+const CACHE_NAME = 'v3.1.33';
 
 self.addEventListener('install', function onInstall(event) {
   event.waitUntil(
@@ -9,14 +9,16 @@ self.addEventListener('install', function onInstall(event) {
     ])),
   );
 
-  // event.waitUntil(self.skipWaiting());
+  event.waitUntil(self.skipWaiting());
 });
 
 self.addEventListener('activate', function onActivate(event) {
+  self.clients.claim();
+
   event.waitUntil(
     caches.keys().then(cacheNames => Promise.all(
       cacheNames.map((cacheName) => {
-        if (CACHE_NAME !== cacheName) {
+        if (cacheName !== CACHE_NAME) {
           console.log('Deleting out of date cache:', cacheName);
           return caches.delete(cacheName);
         }
