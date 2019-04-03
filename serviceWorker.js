@@ -1,4 +1,4 @@
-const CACHE_NAME = 'v3.1.28';
+const CACHE_NAME = 'v3.1.29';
 
 self.addEventListener('install', function onInstall(event) {
   event.waitUntil(
@@ -25,14 +25,6 @@ self.addEventListener('activate', function onActivate(event) {
   );
 });
 
-async function fetchUpdateResource(request) {
-  const response = await fetch(request);
-
-  const cache = caches.open(CACHE_NAME);
-
-  cache.put(request, response);
-}
-
 self.addEventListener('fetch', function onFetch(event) {
   const { request } = event;
 
@@ -45,7 +37,7 @@ self.addEventListener('fetch', function onFetch(event) {
         else console.log('not cached: ', event.request);
 
         if (response) {
-          fetchUpdateResource(event.request.clone());
+          fetchUpdateResource(request.clone());
           return response;
         }
 
@@ -54,7 +46,7 @@ self.addEventListener('fetch', function onFetch(event) {
             const fetchResponseClone = fetchResponse.clone();
             caches.open(CACHE_NAME)
               .then((cache) => {
-                cache.put(event.request, fetchResponseClone);
+                  cache.put(event.request, fetchResponseClone);
               });
 
             return fetchResponse;
@@ -62,3 +54,11 @@ self.addEventListener('fetch', function onFetch(event) {
       }),
   );
 });
+
+async function fetchUpdateResource(request) {
+  const response = await fetch(request);
+
+  const cache = await caches.open(CACHE_NAME);
+
+  cache.put(request, response);
+}
