@@ -1,6 +1,3 @@
-const https = require('https');
-const fs = require('fs');
-const path = require('path');
 const jsonServer = require('json-server');
 const server = jsonServer.create();
 const router = jsonServer.router('db.json');
