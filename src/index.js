@@ -11,7 +11,7 @@ import './style/css/bootstrap/bootstrap-grid.css';
 // import './style/bootstrap/bootstrap.css';
 
 import App from './components/App';
-// import registerServiceWorker from './registerServiceWorker';
+import registerServiceWorker from './registerServiceWorker';
 
 
 const extension = window.__REDUX_DEVTOOLS_EXTENSION__;
@@ -31,4 +31,4 @@ ReactDOM.render(
     </Provider>,
 document.getElementById('root'));
 // TODO: add registerSW after end development
-// registerServiceWorker();
+registerServiceWorker();
