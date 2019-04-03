@@ -8,6 +8,12 @@ body {
   font-family: "Lato", Arial;
   background: #f8f9fa; }
 
+.offline-warning {
+  position: relative;
+  padding: 15px 20px;
+  color: #f0f0f0;
+  background: firebrick; }
+
 .img-fluid {
   max-width: 100%;
   height: auto; }

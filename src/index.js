@@ -10,7 +10,7 @@ import './style/css/bootstrap/bootstrap-reboot.css';
 import './style/css/bootstrap/bootstrap-grid.css';
 // import './style/bootstrap/bootstrap.css';
 
-import App from './components/App';
+import App from './containers/App';
 import registerServiceWorker from './registerServiceWorker';
 
 

@@ -9,6 +9,17 @@ export const [fetchCommentsRequest, fetchCommentsSuccess, fetchCommentsFailure] 
 
 export const [fetchPostAndUserRequest, fetchPostAndUserSuccess, fetchPostAndUserFailure] = createAsyncActions('POST_USER_FETCH');
 
+export const networkStateChanged = createAction('NETWORk_STATE_CHANGED');
+
+export const listenNetworkState = () => (dispatch) => {
+    const networkListener = (event) => {
+        dispatch(networkStateChanged({ isOnline: navigator.onLine }));
+    };
+    window.addEventListener('online', networkListener);
+
+    window.addEventListener('offline', networkListener)
+}
+
 export const fetchPosts = (pageId) => async (dispatch) => {
     dispatch(fetchPostsRequest());
     try {
