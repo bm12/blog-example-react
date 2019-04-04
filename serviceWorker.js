@@ -6,6 +6,7 @@ self.addEventListener('install', function onInstall(event) {
       '/static/media/Lato-Bold.44dfe8cc.ttf',
       '/static/media/Lato-Light.5b761f2d.ttf',
       '/static/media/Lato-Regular.7f690e50.ttf',
+      '/index.html',
     ])),
   );
 
@@ -46,12 +47,16 @@ self.addEventListener('fetch', function onFetch(event) {
         return fetch(event.request)
           .then((fetchResponse) => {
             const fetchResponseClone = fetchResponse.clone();
+
             caches.open(CACHE_NAME)
               .then((cache) => {
                 cache.put(event.request, fetchResponseClone);
               });
 
             return fetchResponse;
+          })
+          .catch(() => {
+            return caches.match('/index.html');
           });
       }),
   );
