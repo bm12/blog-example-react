@@ -1,7 +1,7 @@
 import { connect } from "react-redux";
 import Component from "../components/MainPage";
 import { postsSelector } from "../selectors";
-import { fetchPosts } from "../actions";
+import { fetchPosts, prefetchPostById } from "../actions";
 
 const mapStateToProps = (state) => {
     if (state.postsFetchingState !== 'successed' || state.usersFetchingState !== 'successed') {
@@ -15,4 +15,4 @@ const mapStateToProps = (state) => {
     }
 };
 
-export default connect(mapStateToProps, { fetchPosts })(Component);
+export default connect(mapStateToProps, { fetchPosts, prefetchPostById })(Component);

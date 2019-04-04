@@ -29,9 +29,17 @@ class MainPage extends PureComponent {
     componentDidUpdate(prevProps) {
         const { pageId } = this.props.match.params;
         const prevPageId = prevProps.match.params.pageId;
-        if (pageId !== prevPageId) {
-            this.props.fetchPosts(pageId);
-        }
+        const { loaded } = this.props;
+        const prevLoaded = prevProps.loaded;
+        if (pageId !== prevPageId) this.props.fetchPosts(pageId);
+
+        if (loaded && loaded !== prevLoaded) this.prefetchPromoPosts();
+    }
+
+    prefetchPromoPosts() {
+        const { posts, prefetchPostById } = this.props;
+
+        posts.forEach(post => post.isPromo && prefetchPostById(post.id));
     }
 
     render() {
