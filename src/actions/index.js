@@ -74,9 +74,10 @@ export const fetchCommentsByPostId = (postId) => async (dispatch) => {
     }
 };
 
-export const prefetchPostById = (postId) => () => {
+export const prefetchPostById = (postId, userId) => () => {
     const postUrl = routes.getPostUrl(postId);
     const commentUrl = routes.getCommentsUrl(postId);
+    const userUrl = routes.getUsersUrl(`id=${userId}`);
 
     if ('serviceWorker' in navigator && navigator.serviceWorker.controller) {
         navigator.serviceWorker.controller.postMessage({
@@ -84,6 +85,7 @@ export const prefetchPostById = (postId) => () => {
             urls: [
                 postUrl,
                 commentUrl,
+                userUrl,
             ],
         });
     }

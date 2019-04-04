@@ -39,7 +39,7 @@ class MainPage extends PureComponent {
     prefetchPromoPosts() {
         const { posts, prefetchPostById } = this.props;
 
-        posts.forEach(post => post.isPromo && prefetchPostById(post.id));
+        posts.forEach(post => post.isPromo && prefetchPostById(post.id, post.userId));
     }
 
     render() {

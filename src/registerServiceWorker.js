@@ -2,29 +2,17 @@ function registerServiceWorker() {
   if ('serviceWorker' in navigator) {
     const { serviceWorker } = navigator;
     serviceWorker.register('/serviceWorker.js', { scope: '/' }).then((reg) => {
-
-      if (reg.active) {
+      if (reg.installing) {
+        console.log('service worker installing');
+      } else if (reg.waiting) {
+        console.log('service worker waiting');
+      }else if (reg.active) {
         console.log('Service worker active');
-      } else {
-        // serviceWorker.oncontrollerchange = function() {
-        //   switch (serviceWorker.controller.state) {
-        //     case 'activated': {
-        //       serviceWorker.controller.postMessage()
-        //       break;
-        //     }
-
-        //     default: break;
-        //   }
-        // }
       }
 
     }).catch(function (error) {
       // registration failed
       console.log('Registration failed with ' + error);
-    });
-
-    serviceWorker.ready.then((reg) => {
-      console.log('worker ready', reg);
     });
   }
 
