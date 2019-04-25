@@ -9,6 +9,19 @@ export const [fetchCommentsRequest, fetchCommentsSuccess, fetchCommentsFailure] 
 
 export const [fetchPostAndUserRequest, fetchPostAndUserSuccess, fetchPostAndUserFailure] = createAsyncActions('POST_USER_FETCH');
 
+export const networkStateChanged = createAction('NETWORk_STATE_CHANGED');
+
+export const listenNetworkState = () => (dispatch) => {
+    const networkListener = () => {
+        dispatch(networkStateChanged({ isOnline: navigator.onLine }));
+    };
+
+    window.addEventListener('online', networkListener);
+    window.addEventListener('offline', networkListener);
+
+    networkListener();
+}
+
 export const fetchPosts = (pageId) => async (dispatch) => {
     dispatch(fetchPostsRequest());
     try {
@@ -58,5 +71,22 @@ export const fetchCommentsByPostId = (postId) => async (dispatch) => {
     } catch(err) {
         console.error(err);
         dispatch(fetchCommentsFailure(err));
+    }
+};
+
+export const prefetchPostById = (postId, userId) => () => {
+    const postUrl = routes.getPostUrl(postId);
+    const commentUrl = routes.getCommentsUrl(postId);
+    const userUrl = routes.getUsersUrl(`id=${userId}`);
+
+    if ('serviceWorker' in navigator && navigator.serviceWorker.controller) {
+        navigator.serviceWorker.controller.postMessage({
+            type: 'prefetch',
+            urls: [
+                postUrl,
+                commentUrl,
+                userUrl,
+            ],
+        });
     }
 };

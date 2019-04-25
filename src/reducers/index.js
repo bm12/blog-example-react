@@ -39,6 +39,12 @@ const comments = handleActions({
     },
 }, {});
 
+const networkState = handleActions({
+    [actions.networkStateChanged](state, { payload: { isOnline } }) {
+        return { ...state, currentState: isOnline ? 'online' : 'offline' };
+    }
+}, {});
+
 
 export default combineReducers({
     postsFetchingState,
@@ -47,4 +53,5 @@ export default combineReducers({
     postsCount,
     users,
     comments,
+    networkState,
 });
